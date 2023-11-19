@@ -1,0 +1,20 @@
+{{ define "login" }}
+{{ template "base_header" }}
+<div class="login_form center">
+	<h2>Sign In</h2>
+	<form action="" method="post" name="login">
+        <label>Username:</label><br>
+        <input style="width: 60%;"></input><br><br>
+        <label>Password:</label><br>
+        <input style="width: 60%;"></input><br><br>
+
+		<p style="display: inline;"></p>
+        <input type="checkbox"></input>
+		<label> Remember Me</label>
+		<input type="submit" value="Sign In" class="gradient-button" style="font-size: 30px;">	
+	</form>
+	<a href="/register" class="a_header">Create account</a>
+</div>
+{{ template "base_footer" }}
+{{ end }}
+

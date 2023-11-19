@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{{ define "base_header" }}
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="static/styles.css">
+
+        <title>MusicTestSite</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
+        {{ template "header" }}
+{{ end }}
+{{ define "base_footer" }}
+        {{ template "footer" }}
+
+		<script type="module" src="static/scripts.js"></script>
+	</body>
+</html>
+{{ end }}

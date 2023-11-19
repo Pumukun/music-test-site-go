@@ -1,0 +1,20 @@
+{{ define "register" }}
+{{ template "base_header" }}
+
+<div class="register_form center">
+	<h2>Login / Register</h2>
+    <label>Username:</label><br>
+    <input style="width: 60%;" id="reg_username"></input><br><br>
+    <label>Password:</label><br>
+    <input style="width: 60%;" type="password" id="reg_password"></input><br><br>
+
+    <button class="gradient-button" style="font-size: 30px;" id="reg_btn">Login/Register</button>
+</div>
+
+<script src="/static/login_register.js"></script>
+
+{{ template "base_footer" }}
+{{ end }}
+
+
+

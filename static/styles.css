@@ -1,0 +1,127 @@
+@font-face {
+  font-family: Ubuntu_Mono;
+  src: url(fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf);
+}
+
+body {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-family: Ubuntu_Mono;
+    font-size: 30px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+header {
+}
+
+hr {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 60%;
+    width: 50%;
+}
+
+.text_field {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    border: 2px solid #555;
+}
+
+.a_header {
+    position: relative;
+    text-decoration: none;
+    color: white;
+}
+
+.a_header::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4;
+    left: 50%;
+    background-color: white;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.a_header:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.gradient-button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    transition: background-color 0.3s, box-shadow 0.3s;  
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+.gradient-button:hover, .gradient-button:focus {
+    background-color: #357ae8; 
+    box-shadow: 0 0 3px 3px rgba(66,133,244,0.3); 
+    outline: none; 
+}
+
+button {
+    background: #04AA6D;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    /*display: inline-block;*/
+    font-size: 30px;
+    margin: 4px 0px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+button:hover {
+    background-color: #4285f4;
+    box-shadow: 0 0 3px 3px rgba(66,133,244,0.3);
+    outline: none;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 8px rgba(66,133,244,0.3);
+}
+
+

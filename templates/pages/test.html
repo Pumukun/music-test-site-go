@@ -1,0 +1,52 @@
+{{ define "test" }}
+{{ template "base_header" }}
+
+<div class="center">
+    <h1>test</h1>
+
+    <p>Какой-то текст</p>
+
+    <div class="audio_player">
+
+        <audio id="audioPlayer" controls style="display: none;">
+            <source id="audioSource" src="static/audio1.mp3" type="audio/mpeg">
+        </audio>
+
+        <div style="display: inline;">
+            <input type="range" id="seekBar" min="0" value="0" step="0.01" style="width: 400px;">
+            <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+        </div>
+
+        <div style="display: inline;">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" style="width: 100px;">
+        </div>
+
+        <div>
+            <button id="startButton", class="btn2">ᐅ</button>
+            <button id="pauseButton", class="btn2">⏸ </button>
+            <button id="stopButton", class="btn2">⏹ </button>
+            <button id="backButton", class="btn2"><<</button><!--⏪-->
+            <button id="forwardButton", class="btn2">>></button><!--⏩-->
+        </div>
+
+        <div>
+            <button id="nextButton">⏭</button>
+        </div>
+    </div>
+
+    <div class="input_field" style="margin-top: 20px;">
+        <label>Поле ввода:</label>
+        <input></input>
+        <br>
+        <button id="inputSubmit" style="margin-top: 10px;">Ввод</button>
+    </div>
+
+    <br>
+    <a href="/test2" class="gradient-button", style="margin-left: 40%;">Следующий тест</a>
+</div>
+
+
+<script type="module" src="/static/audio_player.js"></script>
+
+{{ template "base_footer" }}
+{{ end }}

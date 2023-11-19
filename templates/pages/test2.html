@@ -1,0 +1,27 @@
+{{ define "test2" }}
+{{ template "base_header" }}
+
+<div class="center">
+    <h1>Заголовок</h1>
+
+    <p>Инструкция</p>
+
+    <div class="text_field">
+        <p>Поле с текстом</p>
+    </div>
+
+    <div class="input_field" style="margin-top: 20px;">
+        <label>Поле ввода:</label>
+        <br>
+        <input></input>
+        <br>
+        <button id="inputSubmit" style="margin-top: 10px;">Ввод</button>
+    </div>
+
+    <br><br>
+    <button id="resultButton" class="gradient-button">Результаты</button>
+</div>
+
+{{ template "base_footer" }}
+{{ end }}
+
