@@ -7,6 +7,7 @@ import (
     "main/models"
     "net/http"
     "strings"
+    "main/config"
 )
 
 func RegisterUser(db *sql.DB) gin.HandlerFunc {
@@ -22,7 +23,25 @@ func RegisterUser(db *sql.DB) gin.HandlerFunc {
         var username string
         err := db.QueryRow("SELECT username FROM users WHERE username = ?", newUser.Username).Scan(&username)
         if username != "" {
-            c.JSON(http.StatusBadRequest, gin.H{"error": "User already exists"})
+            var storedUser models.User
+            err := db.QueryRow("SELECT username, password FROM users WHERE username = ?", newUser.Username).Scan(&storedUser.Username, &storedUser.Password)
+            if err != nil {
+                c.JSON(http.StatusUnauthorized, gin.H{"error": "SQL query error"})
+                return
+            }
+
+            pwdErr := bcrypt.CompareHashAndPassword([]byte(storedUser.Password), []byte(newUser.Password))
+            if pwdErr == nil {
+                c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid password"})
+                return
+            }
+
+            session, _ := config.Store.Get(c.Request, "session")
+            session.Values["authenticated"] = true
+            session.Values["user_id"] = newUser.ID
+            session.Save(c.Request, c.Writer)
+
+            c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
             return
         }
         if strings.TrimSpace(newUser.Password) == "" {
@@ -30,7 +49,7 @@ func RegisterUser(db *sql.DB) gin.HandlerFunc {
             return
         }
 
-        hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
+        hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), 14)
         if err != nil {
             c.JSON(http.StatusInternalServerError, gin.H{"error": "Password hash error"})
             return
@@ -52,5 +71,3 @@ func RegisterUser(db *sql.DB) gin.HandlerFunc {
     }
 }
 
-func LoginUser(c *gin.Context) {
-}

@@ -10,6 +10,7 @@ import (
     "main/handlers"
     "strings"
     "os"
+    "main/config"
 )
 
 func initDB() *sql.DB {
@@ -48,15 +49,20 @@ func main() {
         c.HTML(http.StatusOK, "index", gin.H{})
     })
 
-    router.GET("/login", func(c *gin.Context) {
-        c.HTML(http.StatusOK, "login", gin.H{})
-    })
-    router.POST("/login", handlers.LoginUser)
-
     router.GET("/register", func(c *gin.Context) {
         c.HTML(http.StatusOK, "register", gin.H{})
     })
     router.POST("/register", handlers.RegisterUser(db))
+
+    router.GET("/logout", func(c *gin.Context) {
+        session, _ := config.Store.Get(c.Request, "session")
+
+        delete(session.Values, "user_id")
+        delete(session.Values, "authenticated")
+
+        session.Save(c.Request, c.Writer)
+        c.Redirect(http.StatusFound, "/index")
+    })
 
     router.GET("/test", func(c *gin.Context) {
         c.HTML(http.StatusOK, "test", gin.H{})

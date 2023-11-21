@@ -11,11 +11,11 @@ registerBtn.addEventListener('click', function() {
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"username": username, "password": password}),
-        success: function() {
-            console.log("registration successful!");
+        success: function(data) {
+            console.log("registration successful!", data);
         },
-        error: function() {
-            console.log("registration error"); 
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("registration error", textStatus, errorThrown); 
         },
     });
 });
